@@ -1,3 +1,5 @@
+import chai from 'chai';
+
 describe('Watches Page', () => {
     it('Should display banner container', () => {
         browser.url('https://do.ebay.com/b/Watches-Parts-Accessories/260324/bn_2408535');
@@ -25,5 +27,8 @@ describe('Watches Page', () => {
         const itemButton = $('a.b-guidancecard__link');
         itemButton.click();
         expect(browser).toHaveUrl('https://do.ebay.com/b/Watches/260325/bn_7117208191');
+        // Here we use chai to compare url with include function to quarantine that whether items url changes, the url always contains /Watches/
+        const currentUrl = browser.getUrl();
+        chai.expect(currentUrl).to.include('/Watches');
     });
 });
